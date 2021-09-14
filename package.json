@@ -1,0 +1,22 @@
+{
+  "name": "languageagnosticcodechallenge",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/linbaker/Code-Challenge.git"
+  },
+  "author": "Lindsey Baker",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/linbaker/Code-Challenge/issues"
+  },
+  "homepage": "https://github.com/linbaker/Code-Challenge#readme",
+  "description": "",
+  "dependencies": {
+    "express": "^4.17.1"
+  }
+}
