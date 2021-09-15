@@ -31,24 +31,29 @@ describe('Phrases', () => {
     test('should increment map value for every repeated three word', () => {
         const testText = "Three word phrase THrEE WoRd phrase check three three word phrase";
         const phrases = new Phrases(testText);
-        const returnMap = phrases.groupPhrases()
-        expect(returnMap.get('three word phrase')).toEqual(3);
-        expect(returnMap.get('check three three')).toEqual(1);
+        const testMap = phrases.groupedMap;
+        expect(testMap.get('three word phrase')).toEqual(3);
+        expect(testMap.get('check three three')).toEqual(1);
     });
     
     test('should disregard punctuation when matching 3 letter phrases', () => {
         const testText = "Thr?!?!?ee wor.#d&& phrase() THrEE WoRd phrase check three --thr'ee word phr+==$#%ase";
         const phrases = new Phrases(testText);
-        const returnMap = phrases.groupPhrases()
-        expect(returnMap.get('three word phrase')).toEqual(3);
-        expect(returnMap.get('check three three')).toEqual(1);
+        const testMap = phrases.groupedMap;
+        expect(testMap.get('three word phrase')).toEqual(3);
+        expect(testMap.get('check three three')).toEqual(1);
     });
 
     test('should consider character accent mark when looking for matches', () => {
         const testText = "Thr?!?!?eÉ wor.#d&& phrase() THréE WoRd phrase check three --thr'ee word phr+==$#%ase";
         const phrases = new Phrases(testText);
-        const returnMap = phrases.groupPhrases()
-        expect(returnMap.get('three word phrase')).toEqual(1);
+        expect(phrases.groupedMap.get('three word phrase')).toEqual(1);
+    });
+
+    test('should consider character accent mark when looking for matches', () => {
+        const testText = "Thr?!?!?ee wor.#d&& phrase()-- 2 two is here THrEE WoRd phrase --thr'ee word phr+==$#%ase Two is here equal to three equal to three equal to three";
+        const phrases = new Phrases(testText);
+        expect(phrases.orderedPhrases()).toEqual(1);
     });
 
 });
