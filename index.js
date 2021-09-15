@@ -9,7 +9,7 @@ class Phrases {
     }
 
     groupPhrases () {
-        let wordArray = this.textSample.split(' ');
+        let wordArray = this.textSample.split(/\s+/g);
         for (let i = 0; i < wordArray.length - 2; i++) {
             let threeWordPhrase = wordArray[i] + ' ' + wordArray[i+1] + ' ' + wordArray[i+2];
             this.phrasesMap.set(threeWordPhrase, 1)
