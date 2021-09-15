@@ -8,12 +8,24 @@ class Phrases {
         this.phrasesMap = new Map();
     }
 
+    // get orderedPhrases () {
+    //     const sortedMap = new Map([...this.phrasesMap.groupPhrases().entries()].sort((a, b) => b[1] - a[1]));
+    //     console.log(sortedMap.enteries());
+    // }
+
+    //Using lazy getter to prevent needing to call expensive groupPhrases method multiple times
+    get groupedMap () {
+        Object.defineProperty (this, "groupedMap", 
+            { value: this.groupPhrases()})
+        return this.groupedMap
+    }
+
     groupPhrases () {
         let wordArray = this.textSample.split(/\s+/g);
+        console.log(wordArray, wordArray.length)
         for (let i = 0; i < wordArray.length - 2; i++) {
             //Removing punction at this point to prevent accidenatlly removing a \n whitespace prior to split. Not the tidiest regex as I am explicitly excluding all ASCII punction instead of specify what to keep as [^a-zA-Z0-9_.-] and [^\w\s] stripped accented letters
             let threeWordPhrase = (wordArray[i] + ' ' + wordArray[i+1] + ' ' + wordArray[i+2]).replace(/[\\'!"#$%&()*+,\-.\/:;<=>?@\[\]^_`{|}~]/g, '');
-            // console.log(threeWordPhrase)
             if (this.phrasesMap.has(threeWordPhrase)) {
                 let count = this.phrasesMap.get(threeWordPhrase)+1;
                 this.phrasesMap.set(threeWordPhrase, count)
@@ -24,6 +36,8 @@ class Phrases {
         console.log(this.phrasesMap.entries())
         return this.phrasesMap
     };
+
+
 
 
     
