@@ -14,6 +14,12 @@ describe('Phrases', () => {
         const phrases = new Phrases(testText)
         expect(phrases.groupPhrases().size).toEqual(1)
     });
+
+    test('should correctly return map with size 1 if text contains only three words', () => {
+        const testText = "Only three";
+        const phrases = new Phrases(testText)
+        expect(phrases.groupPhrases().size).toEqual(0)
+    });
     
 
 });
