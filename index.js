@@ -3,3 +3,11 @@ let textSample = "This is a phrase. I am now going to mess with the repitition. 
 let wordArray = textSample.split(' ');
 
 console.log(wordArray);
+
+class HashTable {
+    constructor() {
+      this.values = {};
+      this.length =  0;
+      this.size =  0;
+    }
+   }
