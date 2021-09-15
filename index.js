@@ -4,7 +4,7 @@ const { moduleExpression } = require("@babel/types");
 
 class Phrases {
     constructor(textSample) {
-        this.textSample = textSample;
+        this.textSample = textSample.toLowerCase();
         this.phrasesMap = new Map();
     }
 
