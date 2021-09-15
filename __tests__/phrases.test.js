@@ -1,6 +1,6 @@
 require('jest');
 const { expect } = require('@jest/globals');
-const Phrases = require('../index.js');
+const Phrases = require('../phrases.js');
 
 describe('Phrases', () => {
 
