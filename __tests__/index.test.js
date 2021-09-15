@@ -20,6 +20,12 @@ describe('Phrases', () => {
         const phrases = new Phrases(testText)
         expect(phrases.groupPhrases().size).toEqual(0)
     });
+
+    test('should return equal map size for string with "\n" and " " whitespace', () => {
+        const testText = "This is a phrase.\nI \nam now going to mess with the repitition. Now\nthis is also a phrase. Three word phrase. What is I\nadd punctuation 'Three\nword phrase'. Now I am going to have a\nodd case tHree WoRD pHRase! So many letters.";;
+        const phrases = new Phrases(testText)
+        expect(phrases.groupPhrases().size).toEqual(43)
+    });
     
 
 });
