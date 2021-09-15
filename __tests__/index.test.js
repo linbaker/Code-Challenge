@@ -51,7 +51,9 @@ describe('Phrases', () => {
     test('should consider character accent mark when looking for matches', () => {
         const testText = "Thr?!?!?ee wor.#d&& phrase()-- 2 two is here THrEE WoRd phrase --thr'ee word phr+==$#%ase Two is here equal to three equal to three equal to three";
         const phrases = new Phrases(testText);
-        expect(phrases.orderedPhrases()).toEqual(1);
+        const expectedArray = ['three word phrase','equal to three','two is here','to three equal','three equal to','word phrase 2','phrase 2 two','2 two is','is here three','here three word','word phrase three','phrase three word','word phrase two','phrase two is','is here equal','here equal to'];
+        const phrasesArray = Array.from(phrases.orderedPhrases.keys());
+        expect(phrasesArray).toEqual(expect.arrayContaining(expectedArray));
     });
 
 });
