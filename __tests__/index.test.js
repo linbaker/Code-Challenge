@@ -48,12 +48,15 @@ describe('Phrases', () => {
         expect(phrases.groupedMap.get('three word phrase')).toEqual(1);
     });
 
-    test('should consider character accent mark when looking for matches', () => {
+    test('should order phrases by frequency they appeared in text', () => {
         const testText = "Thr?!?!?ee wor.#d&& phrase()-- 2 two is here THrEE WoRd phrase --thr'ee word phr+==$#%ase Two is here equal to three equal to three equal to three";
         const phrases = new Phrases(testText);
         const expectedArray = ['three word phrase','equal to three','two is here','to three equal','three equal to','word phrase 2','phrase 2 two','2 two is','is here three','here three word','word phrase three','phrase three word','word phrase two','phrase two is','is here equal','here equal to'];
         const phrasesArray = Array.from(phrases.orderedPhrases.keys());
+        //First condition checks if the expected array is present in the array outputted by method
         expect(phrasesArray).toEqual(expect.arrayContaining(expectedArray));
+        //Second condition checks the arrays are equal length, therefore if the expected array is contained in the outputted array and they have an equal number of elements, they are equal 
+        expect(phrasesArray.length).toEqual(expectedArray.length);
     });
 
 });
