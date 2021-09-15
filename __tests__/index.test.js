@@ -31,8 +31,9 @@ describe('Phrases', () => {
     test('should increment map value for every repeated three word', () => {
         const testText = "Three word phrase THrEE WoRd phrase check three three word phrase";
         const phrases = new Phrases(testText);
-        expect(phrases.groupPhrases().get('three word phrase')).toEqual(3);
-        expect(phrases.groupPhrases().get('check three three')).toEqual(1);
+        const returnMap = phrases.groupPhrases()
+        expect(returnMap.get('three word phrase')).toEqual(3);
+        expect(returnMap.get('check three three')).toEqual(1);
     });
     
 
