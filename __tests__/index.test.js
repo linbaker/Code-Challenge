@@ -44,4 +44,11 @@ describe('Phrases', () => {
         expect(returnMap.get('check three three')).toEqual(1);
     });
 
+    test('should consider character accent mark when looking for matches', () => {
+        const testText = "Thr?!?!?eÉ wor.#d&& phrase() THréE WoRd phrase check three --thr'ee word phr+==$#%ase";
+        const phrases = new Phrases(testText);
+        const returnMap = phrases.groupPhrases()
+        expect(returnMap.get('three word phrase')).toEqual(1);
+    });
+
 });
