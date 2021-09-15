@@ -12,7 +12,9 @@ class Phrases {
         const sortedMap = new Map([...this.groupedMap.entries()].sort((a, b) => b[1] - a[1]));
         // console.log('ordered', sortedMap);
         // console.log('list', sortedMap.keys(), Array.from(sortedMap.keys()))
-        return Array.from(sortedMap.keys());
+        let sortedArray = Array.from(sortedMap.keys());
+        //Prevent over 100 results returning
+        return sortedArray.slice(0,99);
     }
 
     //Using lazy getter to prevent needing to call expensive groupPhrases method multiple times
