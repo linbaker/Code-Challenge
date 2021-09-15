@@ -12,10 +12,18 @@ class Phrases {
         let wordArray = this.textSample.split(/\s+/g);
         for (let i = 0; i < wordArray.length - 2; i++) {
             let threeWordPhrase = wordArray[i] + ' ' + wordArray[i+1] + ' ' + wordArray[i+2];
-            this.phrasesMap.set(threeWordPhrase, 1)
+            if (this.phrasesMap.has(threeWordPhrase)) {
+                let count = this.phrasesMap.get(threeWordPhrase)+1;
+                this.phrasesMap.set(threeWordPhrase, count)
+            } else {
+                this.phrasesMap.set(threeWordPhrase, 1)
+            }
         }
         return this.phrasesMap
     };
+
+
+    
 
 }
 
