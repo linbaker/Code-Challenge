@@ -5,7 +5,7 @@ const Phrases = require('../index.js');
 describe('Phrases', () => {
 
     test('should correctly create a map of thee word phrases', () => {
-        const testText = "This is a phrase. I am now going to mess with the repitition. Now this is also a phrase. Three word phrase. What is I add punctuation 'Three word phrase'. Now I am going to have a odd case tHree WoRD pHRase! So many letters.";
+        const testText = "This is a phrase.\nI \nam now going to mess with the repitition. Now\nthis is also a phrase. Threeeee word phrase. What is I\nadd punctuation 'Three\nword phrases'. Now I am going to have a\nodd case tHree WoRD pHRase! So many letters.";
         const phrases = new Phrases(testText);
         expect(phrases.groupPhrases().size).toEqual(43);
       });
@@ -23,7 +23,7 @@ describe('Phrases', () => {
     });
 
     test('should return equal map size for string with "\n" and " " whitespace', () => {
-        const testText = "This is a phrase.\nI \nam now going to mess with the repitition. Now\nthis is also a phrase. Three word phrase. What is I\nadd punctuation 'Three\nword phrase'. Now I am going to have a\nodd case tHree WoRD pHRase! So many letters.";
+        const testText = "This is a phrase.\nI \nam now going to mess with the repitition. Now\nthis is also a phrase. Threeeee word phrase. What is I\nadd punctuation 'Three\nword phrases'. Now I am going to have a\nodd case tHree WoRD pHRase! So many letters.";
         const phrases = new Phrases(testText);
         expect(phrases.groupPhrases().size).toEqual(43);
     });
@@ -36,5 +36,12 @@ describe('Phrases', () => {
         expect(returnMap.get('check three three')).toEqual(1);
     });
     
+    test('should disregard punctuation when matching 3 letter phrases', () => {
+        const testText = "Thr?!?!?ee wor.#d&& phrase() THrEE WoRd phrase check three --thr'ee word phr+==$#%ase";
+        const phrases = new Phrases(testText);
+        const returnMap = phrases.groupPhrases()
+        expect(returnMap.get('three word phrase')).toEqual(3);
+        expect(returnMap.get('check three three')).toEqual(1);
+    });
 
 });
