@@ -8,4 +8,10 @@ describe('groupPhrases', () => {
         expect(groupPhrases(textSample).size).toEqual(43)
       });
 
+    test('should correctly return map with size 1 if text contains only three words', () => {
+        const textSample = "I am three";
+        expect(groupPhrases(textSample).size).toEqual(1)
+    });
+    
+
 });
