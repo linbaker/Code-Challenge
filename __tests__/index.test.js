@@ -22,9 +22,15 @@ describe('Phrases', () => {
     });
 
     test('should return equal map size for string with "\n" and " " whitespace', () => {
-        const testText = "This is a phrase.\nI \nam now going to mess with the repitition. Now\nthis is also a phrase. Three word phrase. What is I\nadd punctuation 'Three\nword phrase'. Now I am going to have a\nodd case tHree WoRD pHRase! So many letters.";;
+        const testText = "This is a phrase.\nI \nam now going to mess with the repitition. Now\nthis is also a phrase. Three word phrase. What is I\nadd punctuation 'Three\nword phrase'. Now I am going to have a\nodd case tHree WoRD pHRase! So many letters.";
         const phrases = new Phrases(testText)
         expect(phrases.groupPhrases().size).toEqual(43)
+    });
+
+    test('should increment map value for every repeated three word', () => {
+        const testText = "Three word phrase THrEE WoRd phrase check three three word phrase";
+        const phrases = new Phrases(testText)
+        expect(phrases.countPhrases().get('three word phrase')).toEqual(3)
     });
     
 
